@@ -40,18 +40,18 @@ public class DataService
     /// <returns>A list with one <see cref="Group"/> for each class that ran the race.</returns>
     public async Task<List<Group>> GetGroupRanksAsync()
     {
-        var groups = new List<Group>();
-
         // Pretend we are downloading this data over a network.
         // Task.Delay waits for 1000 milliseconds (1 second) without blocking the program.
         await Task.Delay(1000);
 
-        // Add one Group object for each class.
-        groups.Add(new Group
-        {
-            Name = "Class A",
-            Ranks = new List<int> { 4, 9, 11, 12, 20 }
-        });
+        // Build the list using a "collection expression": the square brackets [ ... ]
+        // create a new list and fill it with the items inside, all in one step.
+        // Each Group is created with an "object initializer" { Name = ..., Ranks = ... }
+        // that sets its properties right away.
+        List<Group> groups =
+        [
+            new Group { Name = "Class A", Ranks = [4, 9, 11, 12, 20] },
+        ];
 
         return groups;
     }
